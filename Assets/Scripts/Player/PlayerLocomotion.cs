@@ -111,7 +111,7 @@ public class PlayerLocomotion : MonoBehaviour
         Vector3 rayCastOrigin = transform.position;
         rayCastOrigin.y = rayCastOrigin.y + RayCastHeightOffset;
 
-        if(!IsGrounded /*&& !IsJumping*/)
+        if(!IsGrounded && !IsJumping)
         {
             InAirTimer = InAirTimer + Time.deltaTime;
             _playerRigidbody.AddForce(transform.forward * LeapingVelocity);
@@ -150,19 +150,19 @@ public class PlayerLocomotion : MonoBehaviour
 
     public void HandleJumping()
     {
-        if (IsGrounded /*&& IsJumping*/)
-        {
+        //if (IsGrounded /*&& IsJumping*/)
+        //{
             float jumpingVelocity = Mathf.Sqrt(-2f * GravityIntensity * JumpHeight);
             Vector3 jumpVector = new Vector3(0, jumpingVelocity, 0);
 
             //Vector3 playerVelocity = _moveDirection;
             //playerVelocity.y = jumpingVelocity * 1000;
 
-            _playerRigidbody.velocity += jumpVector;
+            _playerRigidbody.velocity += jumpVector / 10;
 
             //_playerRigidbody.AddForce(playerVelocity);
             //IsJumping = false;
             //Debug.Log(jumpingVelocity);
-        }
+        //}
     }
 }

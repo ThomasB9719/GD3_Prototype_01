@@ -39,7 +39,9 @@ public class InputManager : MonoBehaviour
             _playerControls.PlayerActions.Sprinting.performed += i => SprintingInput = true;
             _playerControls.PlayerActions.Sprinting.canceled += i => SprintingInput = false;
 
-            _playerControls.PlayerActions.Jumping.performed += i => HandleJumpingInput();
+            //_playerControls.PlayerActions.Jumping.performed += i => HandleJumpingInput();
+            _playerControls.PlayerActions.Jumping.performed += i => JumpingInput = true;
+            _playerControls.PlayerActions.Jumping.canceled += i => JumpingInput = false;
         }
 
         _playerControls.Enable();
@@ -54,7 +56,7 @@ public class InputManager : MonoBehaviour
     {
         HandleMovementInput();
         HandleSprintingInput();
-        //HandleJumpingInput();
+        HandleJumpingInput();
     }
 
     private void HandleMovementInput()
@@ -82,13 +84,13 @@ public class InputManager : MonoBehaviour
 
     private void HandleJumpingInput()
     {
-        //if(JumpingInput)
-        //{
+        if (JumpingInput)
+        {
             //_playerLocomotion.IsJumping = true;
             //JumpingInput = false;  
             //JumpingInput = false;
             _playerLocomotion.HandleJumping();
-                      
-        //}
+
+        }
     }
 }

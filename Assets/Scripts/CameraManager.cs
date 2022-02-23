@@ -23,7 +23,7 @@ public class CameraManager : MonoBehaviour
     public float MinimumPivotAngle = -35f;
     public float MaximumPivotAngle = 35f;
 
-    InputManager _inputManager;
+    public InputManager InputManager;
 
     private Vector3 _cameraFollowVelocity = Vector3.zero;
     private Vector3 _cameraVectorPosition;
@@ -31,8 +31,8 @@ public class CameraManager : MonoBehaviour
   
     private void Awake()
     {
-        TargetTransform = FindObjectOfType<PlayerManager>().transform;
-        _inputManager = FindObjectOfType<InputManager>();
+        //TargetTransform = FindObjectOfType<PlayerManager>().transform;
+        //InputManager = FindObjectOfType<InputManager>();
         CameraTransform = Camera.main.transform;
         _defaultPosition = CameraTransform.localPosition.z;    
     }
@@ -59,8 +59,8 @@ public class CameraManager : MonoBehaviour
         Vector3 rotation;
         Quaternion targetRotation;
 
-        LookAngle = LookAngle + (_inputManager.CameraInputX * CameraLookSpeed);
-        PivotAngle = PivotAngle - (_inputManager.CameraInputY * CameraPivotSpeed);
+        LookAngle = LookAngle + (InputManager.CameraInputX * CameraLookSpeed);
+        PivotAngle = PivotAngle - (InputManager.CameraInputY * CameraPivotSpeed);
 
         PivotAngle = Mathf.Clamp(PivotAngle, MinimumPivotAngle, MaximumPivotAngle);
 
