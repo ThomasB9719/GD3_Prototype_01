@@ -34,7 +34,7 @@ public class InputManager : MonoBehaviour
             _playerControls = new PlayerControls();
 
             _playerControls.PlayerMovement.Movement.performed += i => MovementInput = i.ReadValue<Vector2>();
-            _playerControls.PlayerMovement.Camera.performed += i => CameraInput = i.ReadValue<Vector2>();
+            _playerControls.PlayerMovement.Camera.performed += i => CameraInput = i.ReadValue<Vector2>();           
 
             _playerControls.PlayerActions.Sprinting.performed += i => SprintingInput = true;
             _playerControls.PlayerActions.Sprinting.canceled += i => SprintingInput = false;
@@ -90,7 +90,6 @@ public class InputManager : MonoBehaviour
             //JumpingInput = false;  
             //JumpingInput = false;
             _playerLocomotion.HandleJumping();
-
         }
     }
 }
