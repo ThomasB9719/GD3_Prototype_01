@@ -13,48 +13,75 @@ public class ChangeColor : MonoBehaviour
     [SerializeField]
     private string _characterName;
 
-    private Material _platformMaterial;
-    private MeshRenderer _platformMeshRenderer;
+    [SerializeField]
+    private GameObject _nose;
 
-    private string _greyMaterialName = "MAT_Grey (Instance)";
-    private string _platformMaterialName;
+    [SerializeField]
+    private int _colorLayer;
+
+    [SerializeField]
+    private PlaySound _soundHandler;
+
+    [SerializeField]
+    private AudioClip _clip;
+
+    [SerializeField]
+    private ParticleSystem[] _particles;
+
+    [SerializeField]
+    private GameObject[] _colliders;
+
+    [SerializeField]
+    private MeshRenderer[] _ringMeshRenderer;
+
+    [SerializeField]
+    private Material _nextMaterial;
+
+    private MeshRenderer _platformMeshRenderer;
 
     private void Awake()
     {
-        //_greyMaterialName = _greyMaterial.name;
-
         _platformMeshRenderer = GetComponent<MeshRenderer>();
-        _platformMaterial = _platformMeshRenderer.material;
-        //_platformMaterial = _greyMaterial;
-        _platformMaterialName = _platformMaterial.name;
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (_platformMaterialName == _greyMaterialName)
+        if (other.gameObject.layer == _colorLayer)
         {
-            if (other.gameObject.layer == 6)
+            _platformMeshRenderer.material = other.GetComponent<MeshRenderer>().material;
+            //Debug.Log(other.gameObject.name + " has reached the destination");
+
+            if (other.gameObject.name == _characterName)
             {
-                _platformMeshRenderer.material = other.GetComponent<MeshRenderer>().material;
-                Debug.Log(other.gameObject.name + " has reached the destination");
+                other.gameObject.GetComponent<PlayerLocomotion>().enabled = false;
+                other.gameObject.GetComponent<PlayerManager>().enabled = false;
+                other.gameObject.GetComponent<InputManager>().enabled = false;
+                other.gameObject.GetComponent<MeshRenderer>().enabled = false;
+                other.gameObject.GetComponentInChildren<MeshRenderer>().enabled = false;
+                _nose.gameObject.SetActive(false);
 
-                if(other.gameObject.name == _characterName)
+                _nextCharacter.SetActive(true);
+                _cameraManager.TargetTransform = _nextCharacter.transform;
+                _cameraManager.InputManager = _nextCharacter.GetComponent<InputManager>();
+
+                _soundHandler.StopCurrentAudio();
+                _soundHandler.PlayAudio(_clip);
+
+                foreach (ParticleSystem particles in _particles)
                 {
-                    other.gameObject.GetComponent<PlayerLocomotion>().enabled = false;
-                    other.gameObject.GetComponent<PlayerManager>().enabled = false;
-                    other.gameObject.GetComponent<InputManager>().enabled = false;
-                    other.gameObject.GetComponent<MeshRenderer>().enabled = false;
-                    
+                    particles.Play();
+                }
 
-                    _nextCharacter.SetActive(true);
-                    _cameraManager.TargetTransform = _nextCharacter.transform;
-                    _cameraManager.InputManager = _nextCharacter.GetComponent<InputManager>();
+                foreach(GameObject collider in _colliders)
+                {
+                    collider.SetActive(true);
+                }
+
+                foreach (MeshRenderer renderer in _ringMeshRenderer)
+                {
+                    renderer.material = _nextMaterial;
                 }
             }
-        }
-        else
-        {
-            Debug.Log("Character needs to be removed");
         }
     }
 }

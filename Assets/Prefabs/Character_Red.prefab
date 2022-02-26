@@ -7,6 +7,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1970445932993085466, guid: 488c5ac69763eb64785bace6870739fe, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 1970445933508152128, guid: 488c5ac69763eb64785bace6870739fe, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -14,6 +18,10 @@ PrefabInstance:
     - target: {fileID: 1970445933508152130, guid: 488c5ac69763eb64785bace6870739fe, type: 3}
       propertyPath: m_Name
       value: Character_Red
+      objectReference: {fileID: 0}
+    - target: {fileID: 1970445933508152130, guid: 488c5ac69763eb64785bace6870739fe, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 1970445933508152134, guid: 488c5ac69763eb64785bace6870739fe, type: 3}
       propertyPath: m_RootOrder
