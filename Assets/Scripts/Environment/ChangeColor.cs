@@ -37,6 +37,8 @@ public class ChangeColor : MonoBehaviour
     [SerializeField]
     private Material _nextMaterial;
 
+    public bool ColorArrived;
+
     private MeshRenderer _platformMeshRenderer;
 
     private void Awake()
@@ -81,6 +83,8 @@ public class ChangeColor : MonoBehaviour
                 {
                     renderer.material = _nextMaterial;
                 }
+
+                ColorArrived = true;
             }
         }
     }
