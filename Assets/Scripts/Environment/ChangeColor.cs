@@ -35,6 +35,9 @@ public class ChangeColor : MonoBehaviour
     private MeshRenderer[] _ringMeshRenderer;
 
     [SerializeField]
+    private GameObject[] _ringLight;
+
+    [SerializeField]
     private Material _nextMaterial;
 
     public bool ColorArrived;
@@ -82,6 +85,11 @@ public class ChangeColor : MonoBehaviour
                 foreach (MeshRenderer renderer in _ringMeshRenderer)
                 {
                     renderer.material = _nextMaterial;
+                }
+
+                foreach(GameObject light in _ringLight)
+                {
+                    light.SetActive(true);
                 }
 
                 ColorArrived = true;

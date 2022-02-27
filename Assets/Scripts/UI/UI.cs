@@ -12,8 +12,8 @@ public class UI : MonoBehaviour
     [SerializeField]
     private GameObject _pauseMenu;
 
-    [SerializeField]
-    private GameObject _continueButton;
+    //[SerializeField]
+    //private GameObject _continueButton;
 
     [SerializeField]
     private AudioSource _musicAudio;
@@ -33,33 +33,33 @@ public class UI : MonoBehaviour
         _musicAudio.Play();
     }
 
-    public void QuitGame()
-    {
-        SceneManager.LoadScene(0);
-    }
+    //public void QuitGame()
+    //{
+    //    SceneManager.LoadScene(0);
+    //}
 
-    public void RestartLevel()
-    {
-        Scene thisScene = SceneManager.GetActiveScene();
-        SceneManager.LoadScene(thisScene.name);
-    }
+    //public void RestartLevel()
+    //{
+    //    Scene thisScene = SceneManager.GetActiveScene();
+    //    SceneManager.LoadScene(thisScene.name);
+    //}
 
-    private void PauseGame()
-    {
-        Time.timeScale = 0;
-        _pauseMenu.SetActive(true);
+    //public void PauseGame()
+    //{
+    //    Time.timeScale = 0;
+    //    _pauseMenu.SetActive(true);
 
-        _musicAudio.Pause();
+    //    _musicAudio.Pause();
 
-        EventSystem.current.SetSelectedGameObject(null);
-        EventSystem.current.SetSelectedGameObject(_continueButton);
-    }
+    //    EventSystem.current.SetSelectedGameObject(null);
+    //    EventSystem.current.SetSelectedGameObject(_continueButton);
+    //}
 
-    public void UnpauseGame()
-    {
-        Time.timeScale = 1;
-        _pauseMenu.SetActive(false);
+    //public void UnpauseGame()
+    //{
+    //    Time.timeScale = 1;
+    //    _pauseMenu.SetActive(false);
 
-        _musicAudio.Play();
-    }
+    //    _musicAudio.Play();
+    //}
 }

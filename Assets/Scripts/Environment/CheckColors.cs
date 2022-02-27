@@ -14,13 +14,27 @@ public class CheckColors : MonoBehaviour
     [SerializeField]
     private ChangeColor _platformYellow;
 
+    [SerializeField]
+    private GameObject _playerCamera;
+
+    [SerializeField]
+    private GameObject _topdownCamera;
+
     private void Update()
     {
         if (_platformBlue.ColorArrived == true 
             && _platformRed.ColorArrived == true
             && _platformYellow.ColorArrived == true)
-        {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        {          
+            _topdownCamera.SetActive(true);
+            _playerCamera.SetActive(false);
+            
+            Invoke("LoadNextScene", 4f);
         }
+    }
+
+    private void LoadNextScene()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 }

@@ -7,6 +7,9 @@ public class InputManager : MonoBehaviour
     [SerializeField]
     PlayerControls _playerControls;
 
+    [SerializeField]
+    UI_PauseMenu _uiControl;
+
     PlayerLocomotion _playerLocomotion;
 
     public Vector2 MovementInput;
@@ -42,6 +45,8 @@ public class InputManager : MonoBehaviour
             //_playerControls.PlayerActions.Jumping.performed += i => HandleJumpingInput();
             _playerControls.PlayerActions.Jumping.performed += i => JumpingInput = true;
             _playerControls.PlayerActions.Jumping.canceled += i => JumpingInput = false;
+
+            _playerControls.PlayerActions.Pause.performed += i => _uiControl.PauseGame();
         }
 
         _playerControls.Enable();

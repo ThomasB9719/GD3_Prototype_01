@@ -14,6 +14,9 @@ public class GuideColor : MonoBehaviour
     private SphereCollider[] _nextPortalCollider;
 
     [SerializeField]
+    private GameObject[] _nextPortalLight;
+
+    [SerializeField]
     private PlaySound _soundSource;
 
     [SerializeField]
@@ -35,6 +38,10 @@ public class GuideColor : MonoBehaviour
             foreach (Collider collider in _nextPortalCollider)
             {
                 collider.enabled = false;
+            }
+            foreach (GameObject light in _nextPortalLight)
+            {
+                light.SetActive(true);
             }
         }
     }
